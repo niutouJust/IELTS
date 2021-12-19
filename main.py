@@ -40,15 +40,15 @@ class main():
             print(words[1]) # chinese
             print(words[2]) # synonym
             self.loop(words) 
-            print("Good! Well Done.");
         for words in arrWords.bookWordsSecond():
             print(words[0])
             print(words[1])
             print(words[2])
             self.loop(words)
-            print("Good! Well Done.");
+
     def say(self,word):
         os.popen("say " + word)
 
 process = main()
 process.practise()
+print("Good! Well Done.");

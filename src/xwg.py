@@ -38,7 +38,7 @@ class system:
                         ["isolate",r"使隔离，使孤立","inaccessible"],
                         ["avoid",r"避免","sacape,evitable"],
                         ["budget",r"预算","fund,financial"],
-                        ["adapt to ",r"使适应","fit,suit"],
+                        ["adapt to",r"使适应","fit,suit"],
                         ["alternative",r"供替代的，供选择的，替代品","substitute"],
                         ["compensate",r"补偿，赔偿","make up,offset"],
                         ["conponent",r"成分，要素","proportion"],
