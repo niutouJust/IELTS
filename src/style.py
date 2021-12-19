@@ -8,6 +8,7 @@ class system:
     RED = '\033[91m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
+    BACKEND = '\033[1;35;46m'
     END = '\033[0m'
     def __init__(self):
         pass
