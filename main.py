@@ -36,7 +36,7 @@ class main():
     def practise(self):
         arrWords = xwg.system()
         sty = style.system()
-
+        
         for words in arrWords.bookWordsFirst():
             # print(words[0]) # english
             # print('\033[0;36m')
@@ -46,6 +46,7 @@ class main():
             print(sty.END)
             print(words[1]) # chinese
             print(words[2]) # synonym
+            self.say(words[0])
             self.loop(words) 
         for words in arrWords.bookWordsSecond():
             print(words[0])
