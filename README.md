@@ -11,7 +11,3 @@ just run ``python main.py``.
 System: MacOS iTerm or Terminal
  
 
-just run ``python main.py``.
-
-create date: 2021-12-14 by NK
-
