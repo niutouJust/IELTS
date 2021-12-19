@@ -4,6 +4,7 @@
 # create date 2021-12-14 
 # by NK
 from src import xwg
+from src import style
 #
 import os
 
@@ -34,9 +35,15 @@ class main():
                 # os.popen("say " + words[1])
     def practise(self):
         arrWords = xwg.system()
+        sty = style.system()
 
         for words in arrWords.bookWordsFirst():
+            # print(words[0]) # english
+            # print('\033[0;36m')
+            print(sty.RED)
+            print(sty.BOLD)
             print(words[0]) # english
+            print(sty.END)
             print(words[1]) # chinese
             print(words[2]) # synonym
             self.loop(words) 
