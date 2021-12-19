@@ -11,50 +11,44 @@ class main():
     def __init__(self):
         pass
         # return self.BOOK_NAME
-        
+    def loop(self,words,type="default"):
+        input_word =  raw_input("input: ")
+        for i in range(1):
+            self.say(words[0])
+                # os.popen("say " + words[0])
+            # say Chinese
+            self.say(words[1])
+            # os.popen("say " + words[1])
+            # say synonym
+            # os.popen("say " + words[2])
+            while(input_word != words[0]):
+                print("Error ! plaese input agin.")
+                input_word =  raw_input("input: ")
+                # say word
+                for i in range(1):
+                    self.say(words[0])
+                    # os.popen("say " + words[0])
+                # say Chinese
+                if type == "default":
+                    self.say(words[1])
+                # os.popen("say " + words[1])
     def practise(self):
         arrWords = xwg.system()
 
         for words in arrWords.bookWordsFirst():
-            print(words[0])
-            print(words[1])
-            print(words[2])
-            input_word =  raw_input("input: ")
-            # say word
-            for i in range(1):
-                os.popen("say " + words[0])
-            # say Chinese
-            os.popen("say " + words[1])
-            # say synonym
-            os.popen("say " + words[2])
-            while(input_word != words[0]):
-                print("Error ! plaese input agin.")
-                input_word =  raw_input("input: ")
-                # say word
-                for i in range(1):
-                    os.popen("say " + words[0])
-                # say Chinese
-                os.popen("say " + words[1])
+            print(words[0]) # english
+            print(words[1]) # chinese
+            print(words[2]) # synonym
+            self.loop(words) 
+            print("Good! Well Done.");
         for words in arrWords.bookWordsSecond():
             print(words[0])
             print(words[1])
             print(words[2])
-            input_word =  raw_input("input: ")
-            # say word
-            for i in range(1):
-                os.popen("say " + words[0])
-            # say Chinese
-            os.popen("say " + words[1])
-            # say synonym
-            os.popen("say " + words[2])
-            while(input_word != words[0]):
-                print("Error ! plaese input agin.")
-                input_word =  raw_input("input: ")
-                # say word
-                for i in range(1):
-                    os.popen("say " + words[0])
-                # say Chinese
-                os.popen("say " + words[1])
+            self.loop(words)
+            print("Good! Well Done.");
+    def say(self,word):
+        os.popen("say " + word)
 
 process = main()
 process.practise()
