@@ -1,31 +1,50 @@
-#!/usr/bin/python
-# version python 2.7.16
+#!/usr/bin/python3
+# version Python 3.8.1rc1
 # encoding:utf-8
 # create date 2021-12-14 
 # by NK
 from src import xwg
 from src import style
+from src import voice
 #
 import os
+import time
 
 class main():
     def __init__(self):
         self.style = style.system()
-        pass
+        self.voice = voice.system()
+        self.Words = xwg.system()
+        lock_file = "./tmp/keywords.lock"
+        # if os.path.isfile(lock_file) is False:
+        #     self.downVice()
+        #     os.open(lock_file,os.O_CREAT)
+        # else:
+        #     print("if you want to download new keywords files , you can remove './tmp/keywords.lock' file")
         # return self.BOOK_NAME
+    def downVice(self):
+        pass
+        # for words in self.Words.bookWordsFirst():
+            # self.voice.downFile(words[0])
+            # time.sleep(0.1)
+        # for words in self.Words.bookWordsSecond():
+        #     self.voice.downFile(words[0])
+        #     time.sleep(0.1)
+        print("Downloads is Finish")
     def loop(self,words,type="default"):
-        input_word =  raw_input("input: ")
+        input_word =  input("input: ")
         for i in range(1):
-            self.say(words[0])
+            # self.say(words[0])
                 # os.popen("say " + words[0])
             # say Chinese
-            self.say(words[1])
+            # self.say(words[1])
             # os.popen("say " + words[1])
             # say synonym
             # os.popen("say " + words[2])
+            # time.sleep(1)
             while(input_word != words[0]):
                 print("Error ! plaese input agin.")
-                input_word =  raw_input("input: ")
+                input_word =  input("input: ")
                 # say word
                 for i in range(1):
                     self.say(words[0])
@@ -38,10 +57,8 @@ class main():
             print('OK!')
             print(self.style.END)
     def practise(self):
-        arrWords = xwg.system()
         
-        
-        for words in arrWords.bookWordsFirst():
+        for words in self.Words.bookWordsFirst():
             # print(words[0]) # english
             # print('\033[0;36m')
             print(self.style.RED)
@@ -52,16 +69,24 @@ class main():
             print(self.style.YELLOW)
             print(words[2]) # synonym
             print(self.style.END)
-            self.say(words[0])
+            self.say(words[0],2)
+            time.sleep(0.2)
+            self.sayChinese(words[1],1)
             self.loop(words) 
-        for words in arrWords.bookWordsSecond():
+        for words in self.Words.bookWordsSecond():
             print(words[0])
             print(words[1])
             print(words[2])
             self.loop(words)
 
-    def say(self,word):
-        os.popen("say " + word)
+    def say(self,word,count):
+        for i in range(count):
+            #in Macos
+            self.voice.sayMacos(word)
+            time.sleep(1)
+    def sayChinese(self,word,count):
+        os.popen("say " + str(word))
+
 
 process = main()
 process.practise()
