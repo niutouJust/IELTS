@@ -1,9 +1,9 @@
 # encoding:utf-8
 # create date: 2021-12-14 
 # by NK
-# Book: 学为贵538考点词
+# Book: xwg538 exame keyword
 class system:
-        BOOK_NAME = "学为贵538考点词"
+        BOOK_NAME = "xwg 538 exame keyword"
         BOOK_TAG = "xwg538"
         def __init__(self):
                 pass
