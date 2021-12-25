@@ -15,18 +15,20 @@ class main():
         self.style = style.system()
         self.voice = voice.system()
         self.Words = xwg.system()
-        lock_file = "./tmp/keywords.lock"
+        self.log_file_xwg = "./tmp/xwg-1.log"
+        self.fopen_xwg = os.open(self.log_file_xwg,os.O_RDWR|os.O_CREAT)
+        # lock_file = "./tmp/keywords.lock"
         # if os.path.isfile(lock_file) is False:
         #     self.downVice()
-        #     os.open(lock_file,os.O_CREAT)
+            # os.open(lock_file,os.O_CREAT)
         # else:
         #     print("if you want to download new keywords files , you can remove './tmp/keywords.lock' file")
         # return self.BOOK_NAME
     def downVice(self):
-        pass
+        # pass
         # for words in self.Words.bookWordsFirst():
-            # self.voice.downFile(words[0])
-            # time.sleep(0.1)
+        #     self.voice.downFileAndSayByMacos(words[0])
+        #     time.sleep(0.1)
         # for words in self.Words.bookWordsSecond():
         #     self.voice.downFile(words[0])
         #     time.sleep(0.1)
@@ -47,20 +49,39 @@ class main():
                 input_word =  input("input: ")
                 # say word
                 for i in range(1):
-                    self.say(words[0])
+                    self.say(words[0],2)
                     # os.popen("say " + words[0])
                 # say Chinese
                 if type == "default":
-                    self.say(words[1])
+                    self.say(words[1],2)
                 # os.popen("say " + words[1])
             print(self.style.GREEN)
             print('OK!')
             print(self.style.END)
-    def practise(self):
+    def practice(self):
         
         for words in self.Words.bookWordsFirst():
+            self.practiceProcess(words)
+            self.practiceLog(self.fopen_xwg,words[0])
+            #pass
             # print(words[0]) # english
             # print('\033[0;36m')
+            # print(self.style.RED)
+            # print(self.style.BOLD)
+            # print(words[0]) # english
+            # print(self.style.END)
+            # print(words[1]) # chinese
+            # print(self.style.YELLOW)
+            # print(words[2]) # synonym
+            # print(self.style.END)
+            # self.say(words[0],2)
+            # time.sleep(0.2)
+            # self.sayChinese(words[1],1)
+            # self.loop(words) 
+        for words in self.Words.bookWordsSecond():
+            self.practiceProcess(words)
+
+    def practiceProcess(self,words):
             print(self.style.RED)
             print(self.style.BOLD)
             print(words[0]) # english
@@ -73,21 +94,19 @@ class main():
             time.sleep(0.2)
             self.sayChinese(words[1],1)
             self.loop(words) 
-        for words in self.Words.bookWordsSecond():
-            print(words[0])
-            print(words[1])
-            print(words[2])
-            self.loop(words)
 
     def say(self,word,count):
         for i in range(count):
             #in Macos
-            self.voice.sayMacos(word)
+            self.voice.downFileAndSayByMacos(word)
             time.sleep(1)
     def sayChinese(self,word,count):
         os.popen("say " + str(word))
 
+    def practiceLog(self,fopen,key):
+        
+        os.write(fopen,str.encode(key))
 
 process = main()
-process.practise()
+process.practice()
 print("Good! Well Done.");
