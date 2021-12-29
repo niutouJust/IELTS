@@ -1,49 +1,76 @@
-#!/usr/bin/python
-# version python 2.7.16
+#!/usr/bin/python3
+# version Python 3.8.1rc1
 # encoding:utf-8
 # create date 2021-12-14 
 # by NK
 from src import xwg
 from src import style
+from src import voice
 #
 import os
+import time
 
 class main():
     def __init__(self):
         self.style = style.system()
-        pass
-        # return self.BOOK_NAME
+        self.voice = voice.system()
+        self.Words = xwg.system()
+        self.log_file_xwg_a = "./tmp/xwg-a.log"
+        self.log_file_xwg_b = "./tmp/xwg-b.log"
+        fopen_xwg_a = os.open(self.log_file_xwg_a,os.O_RDWR|os.O_CREAT)
+        fopen_xwg_b = os.open(self.log_file_xwg_b,os.O_RDWR|os.O_CREAT)
+        read_content_xwg_a = os.read(fopen_xwg_a,100)
+        read_content_xwg_b = os.read(fopen_xwg_b,100)
+        self.log_word_xwg_a = read_content_xwg_a.decode()
+        self.log_word_xwg_b = read_content_xwg_b.decode()
+            
+    # input continue
     def loop(self,words,type="default"):
-        input_word =  raw_input("input: ")
+        input_word =  input("input: ")
         for i in range(1):
-            self.say(words[0])
-                # os.popen("say " + words[0])
-            # say Chinese
-            self.say(words[1])
-            # os.popen("say " + words[1])
-            # say synonym
-            # os.popen("say " + words[2])
             while(input_word != words[0]):
                 print("Error ! plaese input agin.")
-                input_word =  raw_input("input: ")
+                input_word =  input("input: ")
                 # say word
                 for i in range(1):
-                    self.say(words[0])
-                    # os.popen("say " + words[0])
-                # say Chinese
-                if type == "default":
-                    self.say(words[1])
-                # os.popen("say " + words[1])
+                    self.say(words[0],2)
             print(self.style.GREEN)
             print('OK!')
             print(self.style.END)
-    def practise(self):
-        arrWords = xwg.system()
+
+    # proctice main process
+    def practice(self):
+        self.checkLog(self.log_word_xwg_a)
+        for words in self.Words.bookWordsFirst():
+            if (self.option == 'N'):
+                if words[0].strip() == self.log_word_xwg_a.strip():
+                   self.option = 'Y'
+                else:
+                    continue
+            self.practiceProcess(words)
+            self.practiceLogLinux(self.log_file_xwg_a,words[0])
         
-        
-        for words in arrWords.bookWordsFirst():
-            # print(words[0]) # english
-            # print('\033[0;36m')
+        self.checkLog(self.log_word_xwg_b)
+        for words in self.Words.bookWordsSecond():
+            if (self.option == 'N'):
+                if words[0].strip() == self.log_word_xwg_b.strip():
+                   self.option = 'Y'
+                else:
+                    continue
+            self.practiceProcess(words)
+            self.practiceLogLinux(self.log_file_xwg_b,words[0])
+
+    # check log word
+    def checkLog(self,log_word):
+        if log_word != '':
+            print("Found the a log file, we're continue last the word , do you want to restart ?\n")
+            print("Last Word:" + log_word)
+            self.option = input("Option: Y or N(default) \n")
+        if self.option == '':
+            self.option = 'N'
+    
+    # practice print and saying
+    def practiceProcess(self,words):
             print(self.style.RED)
             print(self.style.BOLD)
             print(words[0]) # english
@@ -52,17 +79,30 @@ class main():
             print(self.style.YELLOW)
             print(words[2]) # synonym
             print(self.style.END)
-            self.say(words[0])
+            self.say(words[0],2)
+            time.sleep(0.2)
+            self.sayChinese(words[1],1)
             self.loop(words) 
-        for words in arrWords.bookWordsSecond():
-            print(words[0])
-            print(words[1])
-            print(words[2])
-            self.loop(words)
 
-    def say(self,word):
-        os.popen("say " + word)
+    # saying
+    def say(self,word,count):
+        for i in range(count):
+            #in Macos
+            self.voice.downFileAndSayByMacos(word)
+            time.sleep(1)
+    # say Chinese 
+    def sayChinese(self,word,count):
+        os.popen("say " + str(word))
+
+    # waiting dev
+    def practiceLog(self,fopen,key):
+        os.write(fopen,str.encode(key))
+
+    # save word to log
+    def practiceLogLinux(self,file_name,key):
+        os.popen("echo "+ key + " >" + file_name)
+        
 
 process = main()
-process.practise()
+process.practice()
 print("Good! Well Done.");
