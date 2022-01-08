@@ -94,7 +94,7 @@ class main():
             print(self.style.END)
             self.say(words[0],2)
             time.sleep(0.2)
-            self.sayChinese(words[1],1)
+            # self.sayChinese(words[1],1) # do not say Chinese
             self.loop(words) 
 
     # saying
