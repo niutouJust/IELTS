@@ -30,11 +30,15 @@ class main():
             
     # input continue
     def loop(self,words,type="default"):
-        input_word =  input("input: ")
+        print(self.style.BLUE)
+        input_word =  input("【input the word】: ")
+        print(self.style.END)
         for i in range(1):
             while(input_word != words[0]):
+                print(self.style.BLUE)
                 print("Error ! plaese input agin.")
-                input_word =  input("input: ")
+                input_word =  input("【input the word】: ")
+                print(self.style.END)
                 # say word
                 for i in range(1):
                     self.say(words[0],2)
