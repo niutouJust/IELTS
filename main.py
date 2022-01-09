@@ -17,20 +17,28 @@ class main():
         self.Words = xwg.system()
         self.log_file_xwg_a = "./tmp/xwg-a.log"
         self.log_file_xwg_b = "./tmp/xwg-b.log"
+        self.log_file_xwg_c = "./tmp/xwg-c.log"
         fopen_xwg_a = os.open(self.log_file_xwg_a,os.O_RDWR|os.O_CREAT)
         fopen_xwg_b = os.open(self.log_file_xwg_b,os.O_RDWR|os.O_CREAT)
+        fopen_xwg_c = os.open(self.log_file_xwg_c,os.O_RDWR|os.O_CREAT)
         read_content_xwg_a = os.read(fopen_xwg_a,100)
         read_content_xwg_b = os.read(fopen_xwg_b,100)
+        read_content_xwg_c = os.read(fopen_xwg_c,100)
         self.log_word_xwg_a = read_content_xwg_a.decode()
         self.log_word_xwg_b = read_content_xwg_b.decode()
+        self.log_word_xwg_c = read_content_xwg_c.decode()
             
     # input continue
     def loop(self,words,type="default"):
-        input_word =  input("input: ")
+        print(self.style.BLUE)
+        input_word =  input("【input the word】: ")
+        print(self.style.END)
         for i in range(1):
             while(input_word != words[0]):
+                print(self.style.BLUE)
                 print("Error ! plaese input agin.")
-                input_word =  input("input: ")
+                input_word =  input("【input the word】: ")
+                print(self.style.END)
                 # say word
                 for i in range(1):
                     self.say(words[0],2)
@@ -59,6 +67,15 @@ class main():
                     continue
             self.practiceProcess(words)
             self.practiceLogLinux(self.log_file_xwg_b,words[0])
+        self.checkLog(self.log_word_xwg_c)
+        for words in self.Words.bookWordsThird():
+            if (self.option == 'N'):
+                if words[0].strip() == self.log_word_xwg_c.strip():
+                   self.option = 'Y'
+                else:
+                    continue
+            self.practiceProcess(words)
+            self.practiceLogLinux(self.log_file_xwg_c,words[0])
 
     # check log word
     def checkLog(self,log_word):
@@ -81,7 +98,7 @@ class main():
             print(self.style.END)
             self.say(words[0],2)
             time.sleep(0.2)
-            self.sayChinese(words[1],1)
+            # self.sayChinese(words[1],1) # do not say Chinese
             self.loop(words) 
 
     # saying

@@ -33,7 +33,7 @@ class system:
                 play_cmd = "afplay " + file_path
                 # if file is exists, then skip.
                 if os.path.isfile(file_path) is False:
-                        command_line = "curl -o " + file_path + " " + str(url) 
+                        command_line = "curl  -s  -o" + file_path + " " + str(url) 
                         # change command to list
                         args = shlex.split(command_line)
                         # exec command
