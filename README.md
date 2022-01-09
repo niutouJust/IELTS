@@ -1,18 +1,25 @@
 # IELTS
-For leanring english 
+For learning English 
 
-This is an IELTS practise system,For future.
+This is an IELTS practice system, For Vocabulary.
 
 
-# How use this it 
-just run ``python3 read.py`.
-listen.py [todo]
-speak.py  [todo]
-read.py   [done]
-wirte.py  [todo]
+# How to use this it 
+
+just run  `` mkdir tmp `` ,``python3 read.py``.
+
+1. listen.py [todo]
+
+1. speak.py  [todo]
+
+1. read.py   [down]
+
+1. write.py  [todo]
+
+1. grammar.py [todo]
 
 
 # requirement
-System: MacOS iTerm or Terminal
+System: macOS iTerm or Terminal
  
 
