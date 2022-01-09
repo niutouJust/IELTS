@@ -3,6 +3,7 @@
 # encoding:utf-8
 # create date 2021-12-14 
 # by NK
+# practice reading words
 from src import xwg
 from src import style
 from src import voice
@@ -27,6 +28,7 @@ class main():
         self.log_word_xwg_a = read_content_xwg_a.decode()
         self.log_word_xwg_b = read_content_xwg_b.decode()
         self.log_word_xwg_c = read_content_xwg_c.decode()
+        self.option = 'Y' # default is N
             
     # input continue
     def loop(self,words,type="default"):
@@ -48,6 +50,7 @@ class main():
 
     # proctice main process
     def practice(self):
+        self.option = 'Y'
         self.checkLog(self.log_word_xwg_a)
         for words in self.Words.bookWordsFirst():
             if (self.option == 'N'):
@@ -57,7 +60,7 @@ class main():
                     continue
             self.practiceProcess(words)
             self.practiceLogLinux(self.log_file_xwg_a,words[0])
-        
+        self.option = 'Y'
         self.checkLog(self.log_word_xwg_b)
         for words in self.Words.bookWordsSecond():
             if (self.option == 'N'):
@@ -67,6 +70,7 @@ class main():
                     continue
             self.practiceProcess(words)
             self.practiceLogLinux(self.log_file_xwg_b,words[0])
+        self.option = 'Y'
         self.checkLog(self.log_word_xwg_c)
         for words in self.Words.bookWordsThird():
             if (self.option == 'N'):
@@ -80,7 +84,7 @@ class main():
     # check log word
     def checkLog(self,log_word):
         if log_word != '':
-            print("Found the a log file, we're continue last the word , do you want to restart ?\n")
+            print("Found the a log file, do you want to restart ?\n")
             print("Last Word:" + log_word)
             self.option = input("Option: Y or N(default) \n")
         if self.option == '':
