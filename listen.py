@@ -50,16 +50,16 @@ class main():
 
     # proctice main process
     def practice(self):
-        # self.option = 'Y'
-        # self.checkLog(self.log_word_xwg_a)
-        # for words in self.Words.bookWordsFirst():
-        #     if (self.option == 'N'):
-        #         if words[0].strip() == self.log_word_xwg_a.strip():
-        #            self.option = 'Y'
-        #         else:
-        #             continue
-        #     self.practiceProcess(words)
-        #     self.practiceLogLinux(self.log_file_xwg_a,words[0])
+        self.option = 'Y'
+        self.checkLog(self.log_word_xwg_a)
+        for words in self.Words.bookWordsFirst():
+            if (self.option == 'N'):
+                if words[0].strip() == self.log_word_xwg_a.strip():
+                   self.option = 'Y'
+                else:
+                    continue
+            self.practiceProcess(words)
+            self.practiceLogLinux(self.log_file_xwg_a,words[0])
         self.option = 'Y'
         self.checkLog(self.log_word_xwg_b)
         for words in self.Words.bookWordsSecond():

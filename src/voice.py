@@ -34,13 +34,13 @@ class system:
                 play_cmd = "afplay " + file_path
                 # if file is exists, then skip.
                 if os.path.isfile(file_path) is False:
-                        command_line = "curl  -s  -o" + file_path + " " + str(url) 
+                        command_line = "curl -s -o " + file_path + " " + str(url) 
                         # change command to list
                         args = shlex.split(command_line)
                         # exec command
                         p = subprocess.Popen(args)
                         if (p is True):
-                                time.sleep(0.5)
+                                time.sleep(1)
                                 os.popen(play_cmd)
                         # play command
                         # os.popen(play_cmd)
@@ -48,7 +48,7 @@ class system:
                         # play mp3
                         while(os.path.isfile(file_path) is True):
                                 os.popen(play_cmd)
-                                time.sleep(0.5)
+                                time.sleep(0.9)
                                 break
                 return True
 
