@@ -39,17 +39,16 @@ class system:
                         args = shlex.split(command_line)
                         # exec command
                         p = subprocess.Popen(args)
+                        time.sleep(0.5)
                         if (p is True):
-                                time.sleep(1)
                                 os.popen(play_cmd)
                         # play command
                         # os.popen(play_cmd)
                 else:
                         # play mp3
-                        while(os.path.isfile(file_path) is True):
+                        if(os.path.isfile(file_path) is True):
+                                time.sleep(1)
                                 os.popen(play_cmd)
-                                time.sleep(0.9)
-                                break
                 return True
 
         def sayWindows(self,keyword):
