@@ -94,7 +94,7 @@ class system:
                         ["outfit","['aotfit]","n.服装"],
                         ["shade","[ferd]","n.阴影，树荫"],
                         ["myth","[mr0]","n. 神话"],
-                        ["opened harvested['aopend]['ha:vistid] adj.收获的 adj.打开的"],
+                        ["opened","harvested['aopend]['ha:vistid]", "adj.收获的 adj.打开的"],
                         ["cleaned","[klirnd]","adj. 干净的;已清洁的"],
                         ["sealed cooled expanded","[sitld]"," adj. 密封的 n.密封"],
                         ["cooled","[ku:ld]","adj.冷却的"],

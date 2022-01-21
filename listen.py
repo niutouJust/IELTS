@@ -7,9 +7,11 @@
 from src import ysw
 from src import style
 from src import voice
+
 #
 import os
 import time
+import sqlite3
 
 class main():
     def __init__(self):
@@ -29,7 +31,8 @@ class main():
         self.log_word_xwg_b = read_content_xwg_b.decode()
         self.log_word_xwg_c = read_content_xwg_c.decode()
         self.option = 'Y' # default is N
-            
+        conn = sqlite3.connect('test.db')
+        print(conn)
     # input continue
     def loop(self,words,type="default"):
         print(self.style.BLUE)
@@ -110,7 +113,7 @@ class main():
         for i in range(count):
             #in Macos
             self.voice.downFileAndSayByMacos(word)
-            time.sleep(1)
+            time.sleep(0.5)
     # say Chinese 
     def sayChinese(self,word,count):
         os.popen("say " + str(word))
